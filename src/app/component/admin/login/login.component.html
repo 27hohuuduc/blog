@@ -1,0 +1,11 @@
+<div class="fixed">
+    <div class="center login">
+        <div class="center container-input">
+            <input type="password" maxlength="20" placeholder required
+                oninput="loginMaxLength(this.value)" (keydown)="loginEnter($event)">
+            <div class="hint-text-login">Please type password</div>
+        </div>
+        <div style="margin: 2px 0;">Or</div>
+        <div id="google-login"></div>
+    </div>
+</div>

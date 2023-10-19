@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import "app/component/common.scss";
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: none;
+}
+
+html,
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    --b-primary: #ffb1c0ff;
+    --b-secondary: #ffd9dfff;
+    --v-height-login: 140px;
+    --v-width-login: 300px;
+}
+
+input {
+    margin: 0;
+    padding: 0;
+
+    &:focus,
+    &:focus-visible {
+        border: none;
+        outline: none;
+    }
+}
+
+.splash {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    visibility: visible;
+    z-index: 9999;
+}
