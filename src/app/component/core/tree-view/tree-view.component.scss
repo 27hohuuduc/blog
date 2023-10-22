@@ -1,0 +1,31 @@
+.container {
+    max-width: 260px;
+    transition: width .3s ease-out;
+
+    @media screen and (max-width: 700px) {
+        width: 0;
+    }
+}
+
+.caret {
+    cursor: pointer;
+    user-select: none;
+    &::before {
+        content: "\25B6";
+        color: black;
+        display: inline-block;
+        margin-right: 6px;
+    }
+}
+
+.caret-down::before {
+    transform: rotate(90deg);
+  }
+
+  .nested {
+    display: none;
+  }
+
+  .active {
+    display: block;
+  }

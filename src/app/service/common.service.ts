@@ -1,44 +1,54 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Injector } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-export enum HttpMethod {'GET', 'POST', 'PUT', 'DELETE'}
+export enum HttpMethod { 'GET', 'POST', 'PUT', 'DELETE' }
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
-  private token: String | null = null
+  private token?: String | null
+  private hearder?: Object
+  private cache?: {
+    path: string,
+    method: HttpMethod,
+    body: any
+  }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) {
 
-  public callApi<T>(path: string, method: HttpMethod, body: any = null): Observable<T> {
+  }
+
+  public callApi<T>(path: string, method: HttpMethod, body?: Object): Observable<T> {
     path = apiHost + path
+
     let headers = {}
 
     if (body) {
-        Object.defineProperty(headers, "Content-Type", {
-            value: "application/json",
-            writable: true,
-            enumerable: true,
-            configurable: true
-        })
-        body = JSON.stringify(body)
+      Object.defineProperty(headers, "Content-Type", {
+        value: "application/json",
+        writable: true,
+        enumerable: true,
+        configurable: true
+      })
+      body = JSON.stringify(body)
     }
 
     if (this.token) {
-        Object.defineProperty(headers, "Authorization", {
-            value: `Bearer ${this.token}`,
-            writable: true,
-            enumerable: true,
-            configurable: true
-        })
+      Object.defineProperty(headers, "Authorization", {
+        value: `Bearer ${this.token}`,
+        writable: true,
+        enumerable: true,
+        configurable: true
+      })
     }
 
     switch (method) {
       case HttpMethod.GET:
         return this.http.get<T>(path, headers)
-      case HttpMethod.POST: 
+      case HttpMethod.POST:
         return this.http.post<T>(path, body, headers)
       case HttpMethod.PUT:
         return this.http.put<T>(path, body, headers)

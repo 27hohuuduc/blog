@@ -1,2 +1,7 @@
+<header>
+    <ng-template #template let-value>
+        {{value.name}}
+    </ng-template>
+    <base-tree-view [map]="map" [component]="component"></base-tree-view>
+</header>
 <router-outlet></router-outlet>
-<p>Hello</p>

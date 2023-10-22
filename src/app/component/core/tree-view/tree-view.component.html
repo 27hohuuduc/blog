@@ -1,0 +1,17 @@
+<!--Call ng-template for first time-->
+<ng-container *ngTemplateOutlet="tree;context:{$implicit:map}">
+</ng-container>
+
+<ng-template #tree let-node>
+    <ul *ngIf="node && node.length > 0">
+        <ng-container *ngFor="let childNode of node">
+            <li>
+                <!--Insert custom drop-down-->
+                <ng-container *ngComponentOutlet="component;inputs: {'value': childNode};injector: inject;"></ng-container>
+                <ng-container *ngTemplateOutlet="tree;context:{$implicit:childNode.child}"></ng-container>
+            </li>
+        </ng-container>
+    </ul>
+</ng-template>
+
+<ng-content></ng-content>

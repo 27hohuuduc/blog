@@ -1,12 +1,5 @@
 @import '../../common.scss';
 
-.fixed {
-    display: block;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-}
-
 .login {
     margin: calc(50vh - 140px/2) auto 0;
     background-color: var(--b-secondary);

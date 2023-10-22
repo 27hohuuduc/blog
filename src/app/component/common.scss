@@ -1,7 +1,16 @@
+/*Common styles*/
+
 $inputBorder: 2px solid var(--b-primary);
 
 .center {
     display: flex;
     align-content: center;
     align-items: center;
+}
+
+.fixed {
+    display: block;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
 }

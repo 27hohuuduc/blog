@@ -6,19 +6,24 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './component/admin/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './component/admin/dashboard/dashboard.component';
+import { TreeViewComponent } from './component/core/tree-view/tree-view.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    DashboardComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        DashboardComponent,
+        TreeViewComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule
+    ]
 })
-export class AppModule { }
+export class AppModule {
+    
+}
+
