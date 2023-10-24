@@ -3,9 +3,9 @@
 </ng-container>
 
 <ng-template #tree let-node>
-    <ul *ngIf="node && node.length > 0">
+    <ul class="ul" *ngIf="node && node.length > 0">
         <ng-container *ngFor="let childNode of node">
-            <li>
+            <li class="li" [ngClass]="{'link': childNode.child.length > 0 ? true : false, 'last': childNode.child.length <= 0 ? true : false}">
                 <!--Insert custom drop-down-->
                 <ng-container *ngComponentOutlet="component;inputs: {'value': childNode};injector: inject;"></ng-container>
                 <ng-container *ngTemplateOutlet="tree;context:{$implicit:childNode.child}"></ng-container>

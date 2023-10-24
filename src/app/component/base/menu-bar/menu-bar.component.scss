@@ -1,0 +1,38 @@
+.menu-bar {
+    ::ng-deep .li {
+        .ul {
+            padding-left: 20px;
+            display: none;
+        }
+
+        &.last {
+            .caret {
+                &::before {
+                    content: '\00a0\00a0\00a0';
+                }
+            }
+        }
+    }
+
+    ::ng-deep .actived {
+        &+.ul {
+            display: block;
+        }
+
+        & .caret::before {
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.caret {
+    cursor: pointer;
+    user-select: none;
+
+    &::before {
+        content: "\25B6";
+        color: black;
+        display: inline-block;
+        margin-right: 6px;
+    }
+}
