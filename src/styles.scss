@@ -50,3 +50,9 @@ ul, li {
     visibility: visible;
     z-index: 9999;
 }
+
+.root {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+}

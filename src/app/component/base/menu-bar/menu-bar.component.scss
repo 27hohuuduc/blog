@@ -6,10 +6,8 @@
         }
 
         &.last {
-            .caret {
-                &::before {
-                    content: '\00a0\00a0\00a0';
-                }
+            .caret::before {
+                content: '\00a0\00a0\00a0';
             }
         }
     }
@@ -34,5 +32,6 @@
         color: black;
         display: inline-block;
         margin-right: 6px;
+        transition: transform .1s ease-in-out;
     }
 }

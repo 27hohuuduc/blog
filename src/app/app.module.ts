@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './component/admin/dashboard/dashboard.component';
 import { TreeViewComponent } from './component/core/tree-view/tree-view.component';
 import { MenuBarComponent } from './component/base/menu-bar/menu-bar.component';
+import { EditerComponent } from './component/core/editer/editer.component';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { MenuBarComponent } from './component/base/menu-bar/menu-bar.component';
         LoginComponent,
         DashboardComponent,
         TreeViewComponent,
-        MenuBarComponent
+        MenuBarComponent,
+        EditerComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

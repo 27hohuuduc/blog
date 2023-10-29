@@ -1,0 +1,29 @@
+@keyframes blinker {
+    from {
+        opacity: 1.0;
+    }
+
+    to {
+        opacity: 0.0;
+    }
+}
+
+.blinker {
+    animation-name: blinker;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(1, 0, 0, 1);
+    animation-duration: 1s;
+    display: inline-block;
+    width: 0.5px;
+    height: 22px;
+    margin-left: 1px;
+    border-radius: 3px;
+    border-left: 0.01px solid #000;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    cursor: text;
+    background-color: azure;
+}
