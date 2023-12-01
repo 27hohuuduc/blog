@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditerComponent } from './editer.component';
+import { NotFoundComponent } from './not-found.component';
 
-describe('EditerComponent', () => {
-  let component: EditerComponent;
-  let fixture: ComponentFixture<EditerComponent>;
+describe('NotFoundComponent', () => {
+  let component: NotFoundComponent;
+  let fixture: ComponentFixture<NotFoundComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EditerComponent]
+      declarations: [NotFoundComponent]
     });
-    fixture = TestBed.createComponent(EditerComponent);
+    fixture = TestBed.createComponent(NotFoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

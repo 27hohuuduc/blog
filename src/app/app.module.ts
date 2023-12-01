@@ -8,7 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './component/admin/dashboard/dashboard.component';
 import { TreeViewComponent } from './component/core/tree-view/tree-view.component';
 import { MenuBarComponent } from './component/base/menu-bar/menu-bar.component';
-import { EditerComponent } from './component/core/editer/editer.component';
+import { TestComponent } from './component/test/test.component';
+import { LineComponent } from './component/core/editer/line/line.component';
+import { EditorComponent } from './component/core/editer/editor.component';
+import { ContextmenuComponent } from './component/core/contextmenu/contextmenu.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +20,10 @@ import { EditerComponent } from './component/core/editer/editer.component';
         DashboardComponent,
         TreeViewComponent,
         MenuBarComponent,
-        EditerComponent
+        TestComponent,
+        LineComponent,
+        EditorComponent,
+        ContextmenuComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

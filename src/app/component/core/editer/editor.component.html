@@ -1,0 +1,4 @@
+<div class="blinker"></div>
+<div class="text-area" tabindex="-1" (keydown)="onKeyDown($event)">
+    <app-line *ngFor="let line of textview" [input]="line"></app-line>
+</div>

@@ -1,5 +1,5 @@
-import { Component, ElementRef, Host, HostListener, Input } from '@angular/core';
-import { BranchNode } from '../../core/tree-view/tree-view.component';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
+import { BranchNode, ITreeViewComponent } from '../../core/tree-view/tree-view.component';
 
 @Component({
   selector: 'app-menu-bar',
@@ -8,23 +8,23 @@ import { BranchNode } from '../../core/tree-view/tree-view.component';
 })
 export class MenuBarComponent {
   map: InternalBranchNode[] = [
-    { name: 'a', child: [] },
+    { name: 'a' },
     {
       name: 'b', child: [
-        { name: 'b-1', child: [] },
+        { name: 'b-1' },
         {
           name: 'b-2', child: [
-            { name: 'b-2-1', child: [] },
-            { name: 'b-2-2', child: [] },
-            { name: 'b-2-3', child: [] }
+            { name: 'b-2-1' },
+            { name: 'b-2-2' },
+            { name: 'b-2-3' }
           ]
         }
       ]
     },
     {
       name: 'c', child: [
-        { name: 'c-1', child: [] },
-        { name: 'c-2', child: [] }
+        { name: 'c-1' },
+        { name: 'c-2' }
       ]
     },
   ]
@@ -32,8 +32,8 @@ export class MenuBarComponent {
   component = InternalComponent
 }
 
-export class InternalBranchNode implements BranchNode {
-  name?: String;
+interface InternalBranchNode extends BranchNode {
+  name: string;
   child?: InternalBranchNode[];
 }
 
@@ -42,7 +42,7 @@ export class InternalBranchNode implements BranchNode {
   styleUrls: ['./menu-bar.component.scss'],
   standalone: true
 })
-export class InternalComponent {
+class InternalComponent implements ITreeViewComponent{
   @Input()
   value!: InternalBranchNode
 
@@ -50,11 +50,17 @@ export class InternalComponent {
 
   @HostListener("click")
   onCLick() {
-    let classList = (this.elRef.nativeElement as HTMLElement).classList
+    const classList = (this.elRef.nativeElement as HTMLElement).classList
     if (classList.contains("actived"))
       classList.remove("actived")
 
     else
       classList.add("actived")
+  }
+
+  @HostListener("contextmenu", ['$event'])
+  onContextMenu(event: Event) {
+
+    //event.preventDefault()
   }
 }

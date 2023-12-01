@@ -1,30 +1,26 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-
-export enum HttpMethod { 'GET', 'POST', 'PUT', 'DELETE' }
+import { EMPTY, Observable, catchError } from 'rxjs';
+import { apiHost } from 'src/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
-  private token?: String | null
-  private hearder?: Object
-  private cache?: {
-    path: string,
-    method: HttpMethod,
-    body: any
-  }
+  private static token?: string | null
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router) { }
 
-  }
+  public setToken = (value: string) => { CommonService.token = value }
+  public getToken = () => CommonService.token
 
-  public callApi<T>(path: string, method: HttpMethod, body?: Object): Observable<T> {
+  public logged = () => CommonService.token ? true : false
+
+  public callApi<T>(path: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE', body: object | string = ""): Observable<T> {
     path = apiHost + path
 
-    let headers = {}
+    const headers = {}
 
     if (body) {
       Object.defineProperty(headers, "Content-Type", {
@@ -36,26 +32,28 @@ export class CommonService {
       body = JSON.stringify(body)
     }
 
-    if (this.token) {
+    if (CommonService.token) {
       Object.defineProperty(headers, "Authorization", {
-        value: `Bearer ${this.token}`,
+        value: `Bearer ${CommonService.token}`,
         writable: true,
         enumerable: true,
         configurable: true
       })
     }
 
-    switch (method) {
-      case HttpMethod.GET:
-        return this.http.get<T>(path, headers)
-      case HttpMethod.POST:
-        return this.http.post<T>(path, body, headers)
-      case HttpMethod.PUT:
-        return this.http.put<T>(path, body, headers)
-      case HttpMethod.DELETE:
-        return this.http.delete<T>(path, headers)
-    }
+    const observable = this.http.request<T>(method, path, {
+      body: body,
+      headers: headers
+    })
+
+    return observable.pipe(
+      catchError(err => {
+        if (err.status && err.status == 401 && this.router.url !== "/admin") {
+          this.router.navigateByUrl("/admin")
+          return EMPTY
+        }
+        throw err
+      })
+    )
   }
 }
-
-export const apiHost = "https://hohuuduc.onrender.com/"

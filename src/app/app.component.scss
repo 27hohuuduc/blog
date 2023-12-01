@@ -1,7 +1,16 @@
 .container {
+    flex: 1;
     position: sticky;
     top: 0;
-    width: 250px;
+    min-width: 250px;
     height: 100vh;
     border-right: 0.5px solid #d0d0d0;
+}
+
+.router {
+    flex: 0;
+}
+
+.router+ ::ng-deep * {
+    flex: 10;
 }

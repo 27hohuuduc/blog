@@ -1,8 +1,11 @@
 import { Component, Injector, Input, OnInit, Type } from '@angular/core';
-import { InternalBranchNode } from '../../base/menu-bar/menu-bar.component';
 
 export interface BranchNode {
   child?: BranchNode[]
+}
+
+export interface ITreeViewComponent {
+  value: BranchNode
 }
 /**
  * General view tree.
@@ -10,16 +13,20 @@ export interface BranchNode {
  * Reference at {@link https://angular.io/api/common/NgComponentOutlet}
  * @description Inject a Component with Input property. Attention, type of value is an extended type from {@link BranchNode}.
  * @example
+ * interface InternalBranchNode extends BranchNode {
+ *  name: string;
+ *  child?: InternalBranchNode[];
+ * }
  * Component({
- * template: '<div>{{value.name}}</div>'
+ *  template: '<div>{{value.name}}</div>'
  * })
- * export class InternalComponent {
+ * export class InternalComponent implements ITreeViewComponent {
  *   Input()
  *   value!: InternalBranchNode
  * }
  */
 @Component({
-  selector: 'base-tree-view',
+  selector: 'app-base-tree-view',
   templateUrl: './tree-view.component.html'
 })
 export class TreeViewComponent implements OnInit {
@@ -27,7 +34,7 @@ export class TreeViewComponent implements OnInit {
   map!: BranchNode[]
 
   @Input({ required: true })
-  component!: Type<any>
+  component!: Type<unknown>
 
   @Input()
   className!: {ul: string, li: string}

@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
-import { CommonService, HttpMethod } from 'src/app/service/common.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import { CommonService } from 'src/app/service/common.service';
 
 declare global {
   interface Window {
@@ -50,20 +50,16 @@ declare global {
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _renderer2: Renderer2, @Inject(DOCUMENT) private _document: Document, private service: CommonService, private router: Router) {
-
-  }
+  constructor(private _renderer2: Renderer2, @Inject(DOCUMENT) private _document: Document, private service: CommonService, private router: Router) { }
 
   ngOnInit(): void {
-    let script = this._renderer2.createElement('script')
+    const script = this._renderer2.createElement('script')
     script.src = "https://accounts.google.com/gsi/client"
     script.onload = () => {
       window.google.accounts.id.initialize({
         client_id: "651134861717-91lcugpve6hvdjsss23o6isck3kg8b0k.apps.googleusercontent.com",
-        callback: (response) => {
-          this.service.callApi<String>('api/auth', HttpMethod.POST, response.credential).subscribe((value) => {
-            console.log(value)
-          })
+        callback: (res) => {
+          this.loginAction(res.credential, "google")
         }
       })
 
@@ -82,9 +78,13 @@ export class LoginComponent implements OnInit {
     this._renderer2.appendChild(this._document.body, script)
   }
 
-  public loginEnter(event: KeyboardEvent): void {
-    if(event.key === "Enter") {
-      this.router.navigateByUrl("/admin/dashboard")
-    }
+  loginAction(input: string, action = "basic"): void {
+    this.service.callApi<{ token: string }>(action, "POST", action === "basic" ? { password: input } : { token: input })
+      .subscribe({
+        next: value => {
+          this.service.setToken(value.token)
+          this.router.navigateByUrl("/admin/dashboard")
+        }
+      })
   }
 }
