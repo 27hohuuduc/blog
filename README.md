@@ -2,7 +2,7 @@
 
 Collect documents on all topics. 
 
-> **Note:** The library package is published at [GitHub/27hohuuduc](https://github.com/27hohuuduc)
+> :memo: **Note:** The library package is published at [GitHub/27hohuuduc](https://github.com/27hohuuduc)
 
 ## Angular Note
 
