@@ -43,3 +43,4 @@ Thumbs.db
 
 # Custom
 */*.spec.ts
+.vscode
