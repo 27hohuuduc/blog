@@ -11,26 +11,26 @@ import { MenuBarComponent } from './component/base/menu-bar/menu-bar.component';
 import { TestComponent } from './component/test/test.component';
 import { LineComponent } from './component/core/editer/line/line.component';
 import { EditorComponent } from './component/core/editer/editor.component';
-import { ContextmenuComponent } from './component/core/contextmenu/contextmenu.component';
+import { ContextmenuComponent } from './service/contextmenu/contextmenu.service';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         DashboardComponent,
-        TreeViewComponent,
         MenuBarComponent,
         TestComponent,
         LineComponent,
         EditorComponent,
-        ContextmenuComponent
     ],
     providers: [],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        ContextmenuComponent,
+        TreeViewComponent
     ]
 })
 export class AppModule {

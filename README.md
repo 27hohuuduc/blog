@@ -1,6 +1,6 @@
 # Blog Project
 
-Collect documents on all topics. 
+Collect documents on all topics. Watch at my [Blog](https://27hohuuduc.github.io/).
 
 > **Note:** The library package is published at [GitHub/27hohuuduc](https://github.com/27hohuuduc)
 
@@ -40,6 +40,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - Large Component must be **declarations**.
 - Other Component like as Icon, Button, etc; If it is reused a lot, then import into **AppModule**, else import at the **Used component**.  
 - Modules need to be declared separately in the modules directory.
+
+**Reuse**
+- Use **common.scss** for duplicate stype.
+- Styles of a *Tag* or *Variable* should be placed at **styles.scss**.
 
 ### Format Code
 

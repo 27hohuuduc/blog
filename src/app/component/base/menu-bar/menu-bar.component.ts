@@ -1,5 +1,7 @@
-import { Component, ElementRef, HostListener, Input } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 import { BranchNode, ITreeViewComponent } from '../../core/tree-view/tree-view.component';
+import { ContextmenuService } from '../../../service/contextmenu/contextmenu.service';
+import { ActivationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-bar',
@@ -10,10 +12,10 @@ export class MenuBarComponent {
   map: InternalBranchNode[] = [
     { name: 'a' },
     {
-      name: 'b', child: [
+      name: 'b', childs: [
         { name: 'b-1' },
         {
-          name: 'b-2', child: [
+          name: 'b-2', childs: [
             { name: 'b-2-1' },
             { name: 'b-2-2' },
             { name: 'b-2-3' }
@@ -22,7 +24,7 @@ export class MenuBarComponent {
       ]
     },
     {
-      name: 'c', child: [
+      name: 'c', childs: [
         { name: 'c-1' },
         { name: 'c-2' }
       ]
@@ -30,11 +32,12 @@ export class MenuBarComponent {
   ]
 
   component = InternalComponent
+
 }
 
 interface InternalBranchNode extends BranchNode {
   name: string;
-  child?: InternalBranchNode[];
+  childs?: InternalBranchNode[];
 }
 
 @Component({
@@ -42,15 +45,27 @@ interface InternalBranchNode extends BranchNode {
   styleUrls: ['./menu-bar.component.scss'],
   standalone: true
 })
-class InternalComponent implements ITreeViewComponent{
+class InternalComponent implements ITreeViewComponent, OnInit {
   @Input()
   value!: InternalBranchNode
 
-  constructor(private elRef: ElementRef) { }
+  private _isAdmin = false
+
+  constructor(private ref: ElementRef, private service: ContextmenuService, private router: Router) { }
+
+  ngOnInit() {
+    //Is Admin Mode
+    this.router.events.subscribe((event) => {
+      if (event instanceof ActivationEnd) {
+        this._isAdmin = (event.snapshot.data as {isAdmin: boolean}).isAdmin
+        console.log(this._isAdmin)
+      }
+    })
+  }
 
   @HostListener("click")
   onCLick() {
-    const classList = (this.elRef.nativeElement as HTMLElement).classList
+    const classList = (this.ref.nativeElement as HTMLElement).classList
     if (classList.contains("actived"))
       classList.remove("actived")
 
@@ -59,8 +74,8 @@ class InternalComponent implements ITreeViewComponent{
   }
 
   @HostListener("contextmenu", ['$event'])
-  onContextMenu(event: Event) {
-
-    //event.preventDefault()
+  onContextMenu(event: MouseEvent) {
+    this.service.set([{ action: this.value.name + " action" }], event)
+    event.preventDefault()
   }
 }

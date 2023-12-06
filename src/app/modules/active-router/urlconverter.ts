@@ -9,7 +9,6 @@ import { ActivatedRouteSnapshot, CanActivateFn, Router } from "@angular/router"
  */
 export const ConverterActivate: CanActivateFn = (route: ActivatedRouteSnapshot) => {
     const url = route.queryParams['url']
-    console.log(url)
     
     return url ? inject(Router).parseUrl(url) : true
 }
