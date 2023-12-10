@@ -20,12 +20,13 @@
             min-width: 150px;
             width: max-content;
             height: max-content;
+
             &:hover {
                 display: block;
             }
         }
 
-        .ul-hover {
+        .li.path:hover>.ul {
             display: block;
         }
     }

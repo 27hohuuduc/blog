@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonService } from 'src/app/service/common.service';
+import { CommonService } from 'src/app/common.service';
 
 declare global {
   interface Window {

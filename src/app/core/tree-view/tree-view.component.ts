@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, Injector, Input, OnInit, AfterViewInit, OnDestroy, Type } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Component, Injector, Input, OnInit, Type } from '@angular/core';
 
 export interface BranchNode {
   childs?: BranchNode[]
 }
 
 export interface ITreeViewComponent {
-  value: BranchNode | { node: BranchNode, parentRef: HTMLLIElement, hook: Observable<void> }
+  value: BranchNode
 }
+
 /**
  * General view tree.
  * 
@@ -37,7 +37,7 @@ export interface ITreeViewComponent {
   selector: 'app-base-tree-view',
   templateUrl: './tree-view.component.html'
 })
-export class TreeViewComponent implements OnInit, AfterViewInit, OnDestroy {
+export class TreeViewComponent implements OnInit {
   @Input({ required: true })
   map!: BranchNode[]
 
@@ -47,28 +47,11 @@ export class TreeViewComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input()
   className: { ul: string, li: string } = { ul: "ul", li: "li" }
 
-  @Input()
-  rootHandle = false
-
   inject!: Injector
-
-  //Type of required return value
-  subject!: Subject<void>
 
   ngOnInit(): void {
     this.inject =
       Injector.create({ providers: [{ provide: this.component }] })
-    if (this.rootHandle) this.subject = new Subject<void>()
   }
 
-  ngAfterViewInit() {
-    if (this.subject) {
-      this.subject.next()
-      this.subject.complete()
-    }
-  }
-
-  ngOnDestroy() {
-    this.subject.unsubscribe()
-  }
 }

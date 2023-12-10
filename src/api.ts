@@ -1,5 +1,5 @@
 /* eslint-disable */
-const isDebug = window.location.hostname === "localhost"
+export const isDebug = window.location.hostname === "localhost"
 
 export const apiHost = isDebug ? "http://localhost:5000/api/" : "https://hohuuduc.onrender.com/"
 
