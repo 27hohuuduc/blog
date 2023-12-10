@@ -1,9 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRoute, Router, RoutesRecognized } from "@angular/router";
-
-type Data = {
-    isAdmin: boolean
-}
+import { Data } from ".";
 
 @Injectable()
 export class Dashboard {

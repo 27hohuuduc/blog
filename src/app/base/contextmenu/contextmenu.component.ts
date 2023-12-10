@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common"
 import { Component, ElementRef, HostListener, Input, OnInit } from "@angular/core"
-import { IconSvgComponent } from "src/app/core/icon-svg/icon-svg.component"
-import { BranchNode, ITreeViewComponent, TreeViewComponent } from "src/app/core/tree-view/tree-view.component"
+import { BranchNode, ITreeViewComponent, IconSvgComponent, TreeViewComponent } from "src/app/core"
 
 @Component({
     standalone: true,

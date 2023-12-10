@@ -41,9 +41,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - Other Component like as Icon, Button, etc; If it is reused a lot, then import into **AppModule**, else import at the **Used component**.  
 - Modules need to be declared separately in the modules directory.
 
-**Reuse**
+**Common Style**
 - Use **common.scss** for duplicate stype.
 - Styles of a *Tag* or *Variable* should be placed at **styles.scss**.
+
+**Common Script**
+- *Functions*, *Classes* or *Types* used in multiple modules must be defined in **shared**.
+- Don't import directly from the script file, everything has to go through **index.ts**.
 
 ### Format Code
 

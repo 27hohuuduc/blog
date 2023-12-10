@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
-import { CommonService, TopicMapService } from 'src/app/common.service';
-import { ContextmenuService } from 'src/app/base/contextmenu/contextmenu.service';
+import { ContextmenuService } from 'src/app/base';
+import { CommonService } from 'src/app/common.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +9,7 @@ import { ContextmenuService } from 'src/app/base/contextmenu/contextmenu.service
 })
 export class DashboardComponent {
 
-  constructor(private service: CommonService, private TopicMapService: ContextmenuService) { 
+  constructor(private service: CommonService, private contextService: ContextmenuService) { 
 
   }
 

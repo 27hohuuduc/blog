@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { EMPTY, Observable, Subject, catchError } from 'rxjs';
 import { apiHost } from 'src/api';
-import { BranchNode } from './core/tree-view/tree-view.component';
+import { TopicMap, Topics } from './shared';
 
 @Injectable({
   providedIn: 'root'
@@ -59,18 +59,7 @@ export class CommonService {
   }
 }
 
-export interface TopicMap extends BranchNode {
-  id: number
-  name: string
-  childs: TopicMap[]
-  parent: TopicMap[]
-}
 
-type Topics = {
-  id: number
-  topic: string,
-  subtopic: Topics[]
-}
 
 @Injectable({
   providedIn: 'root'

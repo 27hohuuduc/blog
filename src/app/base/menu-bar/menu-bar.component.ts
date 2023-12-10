@@ -1,10 +1,11 @@
 import { Component, ElementRef, HostListener, Input, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { ITreeViewComponent } from '../../core/tree-view/tree-view.component';
-import { ContextmenuService } from '../contextmenu/contextmenu.service';
-import { Dashboard } from 'src/app/.modules/dashboard';
-import { CommonService, TopicMap, TopicMapService } from 'src/app/common.service';
+import { CommonService, TopicMapService } from 'src/app/common.service';
+import { ContextmenuService } from '..';
+import { Dashboard, TopicMap } from 'src/app/shared';
+import { ITreeViewComponent } from 'src/app/core';
+import { DashboardService } from 'src/app/path';
 
 
 @Component({
@@ -40,30 +41,16 @@ class InternalComponent implements ITreeViewComponent, OnInit, OnDestroy {
   addHandle(type: "above" | "below" | "first" | "last") {
     switch (type) {
       case 'above':
-        this.service.callApi<{ result: string }>("/debug", "POST", { result: "OK" })
-          .subscribe(e => {
-            if (e.result === "OK") {
-              undefined
-            }
-          })
+        
         break
       case 'below':
-        this.service.callApi<{ result: string }>("/debug", "POST", { result: "OK" })
-          .subscribe(e => {
-            console.log(e)
-          })
+        
         break
       case 'first':
-        this.service.callApi<{ result: string }>("/debug", "POST", { result: "OK" })
-          .subscribe(e => {
-            console.log(e)
-          })
+        
         break
       case 'last':
-        this.service.callApi<{ result: string }>("/debug", "POST", { result: "OK" })
-          .subscribe(e => {
-            console.log(e)
-          })
+        
         break
     }
   }
@@ -113,7 +100,8 @@ class InternalComponent implements ITreeViewComponent, OnInit, OnDestroy {
 
   private _isAdmin = false; _destroy!: Subscription
 
-  constructor(private ref: ElementRef, private service: CommonService, private serviceContext: ContextmenuService, private dashboard: Dashboard) { }
+  constructor(private ref: ElementRef, private service: CommonService, private serviceContext: ContextmenuService, 
+    private dashboardService: DashboardService, private dashboard: Dashboard) { }
 
   ngOnInit() {
     //Is Admin Mode

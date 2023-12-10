@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Injectable, Injector, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Injectable, Injector, Input } from '@angular/core';
 import { TextView } from '../editor.component';
 import { NgFor } from '@angular/common';
 
@@ -10,15 +10,12 @@ import { NgFor } from '@angular/common';
     "tabindex": "-1"
   }
 })
-export class LineComponent implements AfterViewInit, OnInit {
+export class LineComponent implements AfterViewInit {
   component = CharacterComponent
 
   @Input({ required: true }) input!: TextView[]
 
   constructor(private ref: ElementRef) { }
-
-  ngOnInit(): void {
-  }
 
   ngAfterViewInit(): void {
     (this.ref.nativeElement as HTMLElement).focus()
