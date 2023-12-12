@@ -1,9 +1,11 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Injectable, Injector, Input } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Injectable, Injector, Input, OnInit } from '@angular/core';
 import { TextView } from '../editor.component';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-line',
+  imports: [CommonModule],
   templateUrl: './line.component.html',
   styleUrls: ['./line.component.scss'],
   host: {

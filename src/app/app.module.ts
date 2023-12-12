@@ -1,28 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './path/login/login.component';
-import { DashboardComponent } from './path/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TreeViewComponent } from './core/tree-view/tree-view.component';
-import { MenuBarComponent } from './base/menu-bar/menu-bar.component';
+import { AppComponent } from './app.component';
 import { TestComponent } from './.test/test.component';
-import { LineComponent } from './core/editer/line/line.component';
-import { EditorComponent } from './core/editer/editor.component';
-import { ContextmenuComponent } from './base/contextmenu/contextmenu.component';
-import { Dashboard } from './.modules/dashboard';
+import { Dashboard } from './shared/dashboard';
+import { BaseModule } from './base/base.module';
+import { CoreModule } from './core/core.module';
+import { PathModule } from './path/path.module';
 
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent,
-        DashboardComponent,
-        MenuBarComponent,
         TestComponent,
-        LineComponent,
-        EditorComponent,
     ],
     providers: [Dashboard],
     bootstrap: [AppComponent],
@@ -30,11 +20,10 @@ import { Dashboard } from './.modules/dashboard';
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        ContextmenuComponent,
-        TreeViewComponent
+        BaseModule,
+        CoreModule,
+        PathModule
     ]
 })
-export class AppModule {
-    
-}
+export class AppModule { }
 

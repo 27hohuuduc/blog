@@ -47,7 +47,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 **Common Script**
 - *Functions*, *Classes* or *Types* used in multiple modules must be defined in **shared**.
-- Don't import directly from the script file, everything has to go through **index.ts**.
+- Don't import directly from the script file, must be made via **index.ts**.
+- Import **Feature modules** instead of import **Class**.
 
 ### Format Code
 

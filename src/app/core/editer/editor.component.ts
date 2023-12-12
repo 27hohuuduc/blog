@@ -16,8 +16,6 @@ export class EditorComponent implements OnInit {
   public textview: TextView[][] = []
   public target: HTMLElement | undefined
 
-  constructor() { }
-
   newLine(): void {
     this.textview.push([
       {
@@ -29,9 +27,6 @@ export class EditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.newLine()
-  }
-
-  onClick(event: MouseEvent) {
   }
 
   onKeyDown(event: KeyboardEvent) {
