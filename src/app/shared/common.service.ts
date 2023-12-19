@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { EMPTY, Observable, Subject, catchError } from 'rxjs';
-import { apiHost } from 'src/api';
+import { environment } from 'src/environments/environment';
 import { TopicMap, Topics } from '.';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class CommonService {
   public logged = () => CommonService.token ? true : false
 
   public callApi<T>(path: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE', body?: object): Observable<T> {
-    path = apiHost + path
+    path = environment.apiHost + path
 
     const headers = {}
     let json!: string
@@ -73,7 +73,7 @@ export class TopicMapService {
   register = this.subject.pipe()
 
   init() {
-    this.service.callApi<Topics[]>("/debug", "POST", [
+    this.service.callApi<Topics[]>("debug", "POST", [
       {
         id: 1,
         topic: "Home"

@@ -14,7 +14,8 @@ Collect documents on all topics. Watch at my [Blog](https://27hohuuduc.github.io
 # Development Diaries
 | Date      | Description |
 | :-:       | :---        |
-| 17/122023 | Add lazy loading |
+| 17/12/2023 | Create module for dashboard page (apply lazy loading) |
+| 19/12/2023 | Apply environment variables |
 
 # Rule
 

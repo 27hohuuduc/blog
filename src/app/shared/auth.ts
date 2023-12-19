@@ -1,8 +1,8 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
-import { isDebug } from 'src/api';
+import { environment } from 'src/environments/environment';
 import { CommonService } from '.';
 
 export const AuthActivave: CanActivateFn = (route: ActivatedRouteSnapshot) => {
-  return isDebug ?  true : route.url.length == 0 || inject(CommonService).logged() ? true : inject(Router).parseUrl("/login")
+  return environment.isDebug ?  true : route.url.length == 0 || inject(CommonService).logged() ? true : inject(Router).parseUrl("/login")
 }
