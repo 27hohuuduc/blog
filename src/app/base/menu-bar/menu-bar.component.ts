@@ -1,11 +1,10 @@
 import { Component, ElementRef, HostListener, Input, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { CommonService, TopicMapService } from 'src/app/common.service';
 import { ContextmenuService } from '..';
-import { Dashboard, TopicMap } from 'src/app/shared';
-import { ITreeViewComponent } from 'src/app/core';
-import { DashboardService } from 'src/app/path';
+import { CommonService, Dashboard, TopicMap } from 'src/app/shared';
+import { TopicMapService } from 'src/app/shared';
+import { ITreeViewComponent } from 'src/app/core/tree-view';
 
 
 @Component({
@@ -28,9 +27,9 @@ export class MenuBarComponent {
 }
 
 @Component({
+  standalone: true,
   templateUrl: './menu-bar-internal.component.html',
   styleUrls: ['./menu-bar.component.scss'],
-  standalone: true,
   imports: [CommonModule]
 })
 class InternalComponent implements ITreeViewComponent, OnInit, OnDestroy {
@@ -101,7 +100,7 @@ class InternalComponent implements ITreeViewComponent, OnInit, OnDestroy {
   private _isAdmin = false; _destroy!: Subscription
 
   constructor(private ref: ElementRef, private service: CommonService, private serviceContext: ContextmenuService, 
-    private dashboardService: DashboardService, private dashboard: Dashboard) { }
+    private dashboard: Dashboard) { }
 
   ngOnInit() {
     //Is Admin Mode

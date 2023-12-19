@@ -1,13 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Injector, Input, OnInit, Type } from '@angular/core';
-
-export interface BranchNode {
-  childs?: BranchNode[]
-}
-
-export interface ITreeViewComponent {
-  value: BranchNode
-}
+import { BranchNode } from '.';
 
 /**
  * General view tree.

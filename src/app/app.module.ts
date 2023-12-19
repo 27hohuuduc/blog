@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './.test/test.component';
 import { Dashboard } from './shared/dashboard';
 import { BaseModule } from './base/base.module';
-import { CoreModule } from './core/core.module';
-import { PathModule } from './path/path.module';
 
 @NgModule({
     declarations: [
@@ -20,9 +18,7 @@ import { PathModule } from './path/path.module';
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        BaseModule,
-        CoreModule,
-        PathModule
+        BaseModule
     ]
 })
 export class AppModule { }

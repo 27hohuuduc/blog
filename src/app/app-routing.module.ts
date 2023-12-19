@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthActivave, ConverterActivate } from './shared';
-import { LoginComponent } from './path/login/login.component';
-import { DashboardComponent } from './path/dashboard/dashboard.component';
 import { TestComponent } from './.test/test.component';
 import { NotFoundComponent } from 'src/app/base/not-found/not-found.component';
+import { LoginComponent } from './base';
 
 const routes: Routes = [
   { path: "", canActivate: [ConverterActivate], component: TestComponent },
   { path: "login", component: LoginComponent },
   {
-    path: "dashboard", canActivateChild: [AuthActivave], data: { isAdmin: true }, children: [
-      { path: "", component: DashboardComponent }
-    ]
+    path: "dashboard", canActivateChild: [AuthActivave], data: { isAdmin: true },
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   { path: "**", component: NotFoundComponent },
 ];

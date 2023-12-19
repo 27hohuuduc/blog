@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { EMPTY, Observable, Subject, catchError } from 'rxjs';
 import { apiHost } from 'src/api';
-import { TopicMap, Topics } from './shared';
+import { TopicMap, Topics } from '.';
 
 @Injectable({
   providedIn: 'root'

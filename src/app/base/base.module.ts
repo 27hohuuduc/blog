@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ContextmenuComponent, MenuBarComponent } from '.';
-import { CoreModule } from '../core/core.module';
-
-
+import { TreeViewComponent } from '../core/tree-view';
 
 @NgModule({
   declarations: [
@@ -10,7 +8,7 @@ import { CoreModule } from '../core/core.module';
   ],
   imports: [
     ContextmenuComponent,
-    CoreModule
+    TreeViewComponent
   ],
   exports: [
     ContextmenuComponent,
