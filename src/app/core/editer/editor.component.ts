@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 export interface TextView {
   type: "text" | "media"
@@ -8,32 +8,9 @@ export interface TextView {
 
 @Component({
   selector: 'app-editor',
-  templateUrl: './editor.component.html',
+  template: '<div id="editor"></div>',
   styleUrls: ['./editor.component.scss']
 })
-export class EditorComponent implements OnInit {
-
-  public textview: TextView[][] = []
-  public target: HTMLElement | undefined
-
-  newLine(): void {
-    this.textview.push([
-      {
-        type: "text",
-        content: "asd"
-      }
-    ])
-  }
-
-  ngOnInit(): void {
-    this.newLine()
-  }
-
-  onKeyDown(event: KeyboardEvent) {
-    switch (event.key) {
-      case "Enter":
-        this.newLine()
-        break
-    }
-  }
+export class EditorComponent {
+  
 }
