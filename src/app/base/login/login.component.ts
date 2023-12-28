@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonService } from 'src/app/shared/common.service';
+import { ApiService } from 'src/app/shared';
 
 declare global {
   interface Window {
@@ -50,7 +50,7 @@ declare global {
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _renderer2: Renderer2, @Inject(DOCUMENT) private _document: Document, private service: CommonService, private router: Router) { }
+  constructor(private _renderer2: Renderer2, @Inject(DOCUMENT) private _document: Document, private service: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     const script = this._renderer2.createElement('script')

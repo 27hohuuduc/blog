@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener, Input, OnInit, OnDestroy } from '@
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ContextmenuService } from '..';
-import { CommonService, Dashboard, TopicMap } from 'src/app/shared';
+import { ApiService, Dashboard, TopicMap } from 'src/app/shared';
 import { TopicMapService } from 'src/app/shared';
 import { ITreeViewComponent } from 'src/app/core/tree-view';
 
@@ -18,7 +18,7 @@ export class MenuBarComponent {
   component = InternalComponent
 
   constructor(private service: TopicMapService) {
-    service.register.subscribe(e => {
+    service.register.topicMap.subscribe(e => {
       this.map = e
     })
     service.init()
@@ -40,16 +40,16 @@ class InternalComponent implements ITreeViewComponent, OnInit, OnDestroy {
   addHandle(type: "above" | "below" | "first" | "last") {
     switch (type) {
       case 'above':
-        
+
         break
       case 'below':
-        
+
         break
       case 'first':
-        
+
         break
       case 'last':
-        
+
         break
     }
   }
@@ -99,8 +99,8 @@ class InternalComponent implements ITreeViewComponent, OnInit, OnDestroy {
 
   private _isAdmin = false; _destroy!: Subscription
 
-  constructor(private ref: ElementRef, private service: CommonService, private serviceContext: ContextmenuService, 
-    private dashboard: Dashboard) { }
+  constructor(private ref: ElementRef, private serviceContext: ContextmenuService,
+    private topicService: TopicMapService, private dashboard: Dashboard) { }
 
   ngOnInit() {
     //Is Admin Mode
@@ -130,5 +130,7 @@ class InternalComponent implements ITreeViewComponent, OnInit, OnDestroy {
 
     else
       classList.add("actived")
+    if (this._isAdmin)
+      this.topicService.selectTopic(this.value)
   }
 }
