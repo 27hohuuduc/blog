@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener, Input, OnInit, OnDestroy } from '@
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ContextmenuService } from '..';
-import { ApiService, Dashboard, TopicMap } from 'src/app/shared';
+import { Dashboard, TopicMap } from 'src/app/shared';
 import { TopicMapService } from 'src/app/shared';
 import { ITreeViewComponent } from 'src/app/core/tree-view';
 
