@@ -16,6 +16,7 @@ Collect documents on all topics. Watch at my [Blog](https://27hohuuduc.github.io
 | :-:       | :---        |
 | 17/12/2023 | Create module for dashboard page (apply lazy loading) |
 | 19/12/2023 | Apply environment variables |
+| 30/12/2023 | Update Angular 17 |
 
 # Rule
 
