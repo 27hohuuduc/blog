@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, Input, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Subscription } from 'rxjs';
 import { ContextmenuService } from '..';
 import { Dashboard, TopicMap } from 'src/app/shared';
@@ -29,8 +29,7 @@ export class MenuBarComponent {
 @Component({
   standalone: true,
   templateUrl: './menu-bar-internal.component.html',
-  styleUrls: ['./menu-bar.component.scss'],
-  imports: [CommonModule]
+  styleUrls: ['./menu-bar.component.scss']
 })
 class InternalComponent implements ITreeViewComponent, OnInit, OnDestroy {
 

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common"
+
 import { Component, ElementRef, HostListener, Input, OnInit } from "@angular/core"
 import { IconSvgComponent } from "src/app/core/icon-svg"
 import { TreeViewComponent, BranchNode, ITreeViewComponent } from "src/app/core/tree-view"
@@ -51,7 +51,7 @@ import { TreeViewComponent, BranchNode, ITreeViewComponent } from "src/app/core/
     standalone: true,
     templateUrl: './contextmenu-internal.component.html',
     styleUrls: ['./contextmenu.component.scss'],
-    imports: [CommonModule, IconSvgComponent]
+    imports: [IconSvgComponent]
   })
   class InternalComponent implements ITreeViewComponent {
   

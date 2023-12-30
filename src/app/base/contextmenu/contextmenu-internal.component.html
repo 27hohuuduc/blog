@@ -1,6 +1,7 @@
 <div class="action">
     <span>{{value.action}}</span>
-    <ng-template [ngIf]="value.childs && value.childs.length !== 0">
-        <app-icon-svg ></app-icon-svg>
-    </ng-template>
+    @if(value.childs && value.childs.length !== 0)
+    {
+        <app-icon-svg></app-icon-svg>
+    }
 </div>
