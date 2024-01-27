@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ContextmenuComponent, MenuBarComponent } from '.';
 import { TreeViewComponent } from '../core/tree-view';
+import { OverlayComponent } from './overlay/overlay.component';
 
 @NgModule({
   declarations: [
@@ -8,11 +9,13 @@ import { TreeViewComponent } from '../core/tree-view';
   ],
   imports: [
     ContextmenuComponent,
-    TreeViewComponent
+    TreeViewComponent,
+    OverlayComponent
   ],
   exports: [
     ContextmenuComponent,
-    MenuBarComponent
+    MenuBarComponent,
+    OverlayComponent
   ]
 })
 export class BaseModule { }

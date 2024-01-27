@@ -1,5 +1,4 @@
 import { Component, ElementRef, HostListener, Input, OnInit, OnDestroy } from '@angular/core';
-
 import { Subscription } from 'rxjs';
 import { ContextmenuService } from '..';
 import { Dashboard, TopicMap } from 'src/app/shared';
@@ -36,50 +35,65 @@ class InternalComponent implements ITreeViewComponent, OnInit, OnDestroy {
   @Input()
   value!: TopicMap
 
-  addHandle(type: "above" | "below" | "first" | "last") {
+  addHandle(type: "above" | "below" | "inside") {
+    const topic: TopicMap = {
+      id: -1,
+      name: "New Topic",
+      childs: [],
+      parent: null
+    }
     switch (type) {
       case 'above':
-
-        break
       case 'below':
-
+        {
+          let parent = []
+          if (this.value.parent == null)
+            parent = this.topicService.register.topicMap.getValue()
+          else
+            parent = this.value.parent.childs
+          let index = parent.indexOf(this.value)
+          if (type === 'below')
+            index += 1
+          parent.splice(index, 0, topic);
+        }
         break
-      case 'first':
-
-        break
-      case 'last':
-
+      case 'inside':
+        topic.parent = this.value
+        this.value.childs.push(topic);
         break
     }
+    (this.ref.nativeElement as HTMLElement).classList.add("actived")
+    this.topicService.selectTopic(topic)
   }
 
   handleContextMenu = (event: MouseEvent) => {
+    const addoptions = [
+      {
+        action: "Above", click: () => {
+          this.addHandle("above")
+        }
+      },
+      {
+        action: "Below", click: () => {
+          this.addHandle("below")
+        }
+      }
+    ]
+
+    if (!this.value.childs || this.value.childs.length == 0)
+      addoptions.push(
+        {
+          action: "Inside", click: () => {
+            this.addHandle("inside")
+          }
+        }
+      )
+
     this.serviceContext.set(
       [
         {
           action: "Add New Path",
-          childs: [
-            {
-              action: "On Above", click: () => {
-                this.addHandle("above")
-              }
-            },
-            {
-              action: "On Below", click: () => {
-                this.addHandle("above")
-              }
-            },
-            {
-              action: "At First", click: () => {
-                this.addHandle("above")
-              }
-            },
-            {
-              action: "At Last", click: () => {
-                this.addHandle("above")
-              }
-            }
-          ]
+          childs: addoptions
         },
         {
           action: "Edit Path",
@@ -93,7 +107,8 @@ class InternalComponent implements ITreeViewComponent, OnInit, OnDestroy {
             console.log(this.action)
           }
         }
-      ], event)
+      ]
+      , event)
   }
 
   private _isAdmin = false; _destroy!: Subscription
@@ -104,6 +119,7 @@ class InternalComponent implements ITreeViewComponent, OnInit, OnDestroy {
   ngOnInit() {
     //Is Admin Mode
     const ref = (this.ref.nativeElement as HTMLElement)
+
     this._destroy = this.dashboard.register((data) => {
       if (data.isAdmin) {
         ref.addEventListener("contextmenu", this.handleContextMenu)
@@ -126,10 +142,8 @@ class InternalComponent implements ITreeViewComponent, OnInit, OnDestroy {
     const classList = (this.ref.nativeElement as HTMLElement).classList
     if (classList.contains("actived"))
       classList.remove("actived")
-
     else
       classList.add("actived")
-    if (this._isAdmin)
-      this.topicService.selectTopic(this.value)
+    this.topicService.selectTopic(this.value)
   }
 }

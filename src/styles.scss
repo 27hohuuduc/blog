@@ -3,7 +3,6 @@
 
 * {
     font-family: 'Open Sans', sans-serif;
-    position: relative;
     box-sizing: border-box;
     box-shadow: none;
 }
@@ -21,6 +20,8 @@ html {
     --v-height-login: 140px;
     --v-width-login: 300px;
     --v-background-hover: rgba(220, 220, 220, 0.6);
+    --common-background: #fff;
+    --common-border: #f0f0f0;
 }
 
 input {
@@ -34,7 +35,8 @@ input {
     }
 }
 
-ul, li {
+ul,
+li {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -60,4 +62,9 @@ ul, li {
 
 *:focus-visible {
     outline: none;
+}
+
+.component {
+    display: block;
+    height: 100%;
 }

@@ -18,7 +18,6 @@ Collect documents on all topics. Watch at my [Blog](https://27hohuuduc.github.io
 | 19/12/2023 | Apply environment variables |
 | 30/12/2023 | Update Angular 17 |
 
-
 # Rule
 
 ## Source structure
@@ -36,6 +35,7 @@ Collect documents on all topics. Watch at my [Blog](https://27hohuuduc.github.io
 - *Functions*, *Classes* or *Types* used in multiple modules must be defined in **shared**.
 - Don't import directly from the script file, must be made via **index.ts**.
 - Import **Feature modules** instead of import **Class**.
+- Use `HostBinding` instead of `host` property.
 
 ## Format Code
 

@@ -26,6 +26,7 @@
 .caret {
     display: block;
     width: 100%;
+    overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
     user-select: none;

@@ -7,12 +7,12 @@ import { EditorComponent } from '../core/editer/';
 
 @NgModule({
   declarations: [
-    DashboardComponent,
-    EditorComponent
+    DashboardComponent
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    EditorComponent
   ]
 })
 export class DashboardModule { }

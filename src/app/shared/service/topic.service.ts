@@ -5,12 +5,13 @@ import { BehaviorSubject } from 'rxjs';
 type Topics = {
   id: number
   topic: string,
+  index: number,
   parentId: number
 }
 
 const topicTnit: TopicMap = {
   id: 0,
-  name: "Tạo mới",
+  name: "",
   childs: [],
   parent: null
 }
@@ -33,31 +34,44 @@ export class TopicMapService {
   init() {
     this.service.callApi<Topics[]>("debug", "POST", [
       {
-        id: 1,
-        topic: "Home"
+        id: 4,
+        topic: "Test2",
+        index: 1
       },
       {
         id: 2,
         topic: "Test1",
-      },
-      {
-        id: 3,
-        topic: "Test1-1",
-        parentId: 2
+        index: 0
       },
       {
         id: 5,
         topic: "Test1-2",
+        index: 1,
+        parentId: 2
+      },
+      {
+        id: 3,
+        topic: "Test1-1",
+        index: 0,
         parentId: 2
       },
       {
         id: 6,
-        topic: "Test1-2-1",
+        topic: "Test1-2-3",
+        index: 2,
         parentId: 5
       },
       {
-        id: 4,
-        topic: "Test2"
+        id: 7,
+        topic: "Test1-2-1",
+        index: 0,
+        parentId: 5
+      },
+      {
+        id: 8,
+        topic: "Test1-2-2",
+        index: 1,
+        parentId: 5
       }
     ] as Topics[]).subscribe(res => {
       if (res) {
@@ -81,12 +95,12 @@ export class TopicMapService {
       if (i.parentId) {
         const parent = ref.find(f => f.id == i.parentId)
         if (parent) {
-          parent.node.childs.push(temp)
+          parent.node.childs.splice(i.index, 0, temp)
           temp.parent = parent.node
         }
       }
       else
-        root.push(temp)
+        root.splice(i.index, 0, temp)
 
       ref.push({ id: i.id, node: temp })
     })

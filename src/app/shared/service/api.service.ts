@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { EMPTY, Observable, catchError } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,6 +16,8 @@ export class ApiService {
   public getToken = () => ApiService.token
 
   public logged = () => ApiService.token ? true : false
+
+  public subject = new BehaviorSubject<{state: boolean, msg: string | null}>({state: false, msg: null})
 
   public callApi<T>(path: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE', body?: object): Observable<T> {
     path = environment.apiHost + path
@@ -52,6 +54,7 @@ export class ApiService {
           this.router.navigateByUrl("/admin")
           return EMPTY
         }
+        this.subject.next({state: true, msg: err.message})
         throw err
       })
     )

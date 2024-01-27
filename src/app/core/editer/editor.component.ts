@@ -3,9 +3,10 @@ import { Compartment, EditorState } from '@codemirror/state';
 import { EditorView, basicSetup } from 'codemirror';
 
 @Component({
+  standalone: true,
   selector: 'app-editor',
-  template: '<div #editor></div>',
-  styleUrls: ['./editor.component.scss']
+  template: '<div #editor class="component"></div>',
+  styles: ['::ng-deep.cm-editor {height: 100%}']
 })
 export class EditorComponent implements AfterViewInit {
 
